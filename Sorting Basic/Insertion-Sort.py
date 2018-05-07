@@ -5,13 +5,6 @@ from SortTestHelper import SortTestHelper
 
 
 # 插入排序
-def Insert_Sort(arr):
-    for i in range(1, len(arr)):
-        for j in range(i):
-            if arr[i] < arr[j]:
-                arr[i], arr[j] = arr[j], arr[i]
-    return arr
-
 
 def insert_sort(array):
     # 循环的是第二个到最后（待摸的牌）
@@ -35,18 +28,51 @@ def insert_sort(array):
 def f_sort(arr):
     for i in range(1, len(arr)):
         min = arr[i]
-        j=i
-        while j>0 and arr[j-1]>min:
-            arr[j] = arr[j-1]
-            j -=1
-        arr[j]=min
+        j = i
+        while j > 0 and arr[j - 1] > min:
+            arr[j] = arr[j - 1]
+            j -= 1
+        arr[j] = min
     return arr
 
 
 l = SortTestHelper.generateRandomArray(10, 1, 999)
 s = time.clock()
 print l
-print Insert_Sort(l)
+print f_sort(l)
+
+
 # print time.clock()-s
-#print insert_sort(l)
-#print f_sort(l)
+# print insert_sort(l)
+# print f_sort(l)
+
+
+def a(arr):
+    for i in range(1, len(arr)):
+        min = arr[i]
+        j = i
+        while j > 0 and arr[j - 1] > min:
+            arr[j] = arr[j - 1]
+            j -= 1
+        arr[j] = min
+    return arr
+
+
+def b(arr):
+    for i in range(len(arr) - 1):
+        min = i
+        for j in range(i + 1, len(arr)):
+            if arr[j] < arr[min]:
+                min = j
+        arr[i], arr[min] = arr[min], arr[i]
+    return arr
+
+
+print('\n\n')
+l1 = SortTestHelper.generateRandomArray(10, 1, 999)
+l2 = SortTestHelper.generateRandomArray(10, 1, 999)
+print(l1)
+print(a(l1))
+print(l2)
+print(b(l2))
+
